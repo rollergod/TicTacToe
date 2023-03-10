@@ -69,8 +69,9 @@ namespace TicTacToe.Console.Models
                 new O();
         }
 
-        public Board Put(Coord coord)
+        public Board Put(int xCord, int yCord)
         {
+            var coord = new Coord(xCord, yCord);
             var turn = Turn();
 
             switch (turn)

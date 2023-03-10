@@ -16,10 +16,10 @@ do
                 board.PrintBoard();
                 while (!board.IsGameFinished)
                 {
-                    
                     Console.WriteLine("Введите координаты для X (пример - 0,1)");
 
-                    int[] values = MakeStep(board);
+                    MakeStep(board);
+
                     if (board.IsGameFinished)
                     {
                         Console.WriteLine("Нажмите кнопку что-бы продолжить...");
@@ -29,7 +29,8 @@ do
 
                     Console.WriteLine("Введите координаты для O (пример - 0,0)");
 
-                    values = MakeStep(board);
+                    MakeStep(board);
+
                     if (board.IsGameFinished)
                     {
                         Console.WriteLine("Нажмите кнопку что-бы продолжить...");
@@ -44,7 +45,7 @@ do
     }
 } while (true);
 
-int[] MakeStep(Board board)
+void MakeStep(Board board)
 {
     bool isInputCorrect = false;
     while (!isInputCorrect)
@@ -56,17 +57,14 @@ int[] MakeStep(Board board)
             .Select(x => int.Parse(x))
             .ToArray();
 
-            board.Put(new Coord(values[0], values[1]));
+            board.Put(xCord: values[0], yCord: values[1]);
             board.Winner();
 
             isInputCorrect = true;
-            return values;
         }
         catch (Exception ex)
         {
             Console.WriteLine("Неправильный формат ввода координаты. Попробуй еще раз");
         }
     }
-
-    return null;
 }
