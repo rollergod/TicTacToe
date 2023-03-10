@@ -1,4 +1,5 @@
-﻿using TicTacToe.Console;
+﻿using System.Text.RegularExpressions;
+using TicTacToe.Console;
 using TicTacToe.Console.Models;
 
 int selectedValue;
@@ -45,12 +46,27 @@ do
 
 int[] MakeStep(Board board)
 {
-    var values = Console.ReadLine()
-        .Split(',')
-        .Select(x => int.Parse(x))
-        .ToArray();
+    bool isInputCorrect = false;
+    while (!isInputCorrect)
+    {
+        try
+        {
+            var values = Console.ReadLine()
+            .Split(',')
+            .Select(x => int.Parse(x))
+            .ToArray();
 
-    board.Put(new Coord(values[0], values[1]));
-    board.Winner();
-    return values;
+            board.Put(new Coord(values[0], values[1]));
+            board.Winner();
+
+            isInputCorrect = true;
+            return values;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Неправильный формат ввода координаты. Попробуй еще раз");
+        }
+    }
+
+    return null;
 }

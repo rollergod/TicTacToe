@@ -86,7 +86,7 @@ namespace TicTacToe.Console.Models
                     return new Board(_xs, _os);
                 case O:
                     coord.Symbol = 'O';
-                    if (PlaceIsNotNull(_xs,coord))
+                    if (PlaceIsNotNull(_xs,coord)) // while loop
                     {
                         System.Console.WriteLine("Место занято");
                         return this;
@@ -138,14 +138,14 @@ namespace TicTacToe.Console.Models
 
         private bool WinCoords(List<Coord> coords)
         {
-            var isGameHasVictoryLine = _victoryLines.Any(_ =>
+            var isGameHasVictoryLine = _victoryLines.Any(victoryLine =>
             {
-                var inter = _.Intersect(coords,new CoordComparer());
+                var inter = victoryLine.Intersect(coords,new CoordComparer());
               
                 return inter.Count() == 3;
             });
 
-            return isGameHasVictoryLine; // change name
+            return isGameHasVictoryLine;
         }
 
         public static Board StartGame()

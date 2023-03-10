@@ -8,11 +8,8 @@
             Y = y;
             Symbol = symbol;
         }
-
         public int X { get; private set; }
         public int Y { get; private set; }
         public char Symbol { get; set; }
-
-       
     }
 }

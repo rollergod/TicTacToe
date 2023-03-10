@@ -19,7 +19,7 @@
             if (!int.TryParse(value, out selectedValue))
             {
                 selectedValue = 999;
-                System.Console.WriteLine("Bad");
+                System.Console.WriteLine("упс... попробуй еще раз :)");
             }
 
             return selectedValue;
