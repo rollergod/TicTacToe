@@ -1,6 +1,6 @@
 ﻿namespace TicTacToe.Console.Models
 {
-    public class Coord 
+    internal class Coord 
     {
         public Coord(int x, int y,char symbol = '.')
         {

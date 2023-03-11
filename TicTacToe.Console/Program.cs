@@ -1,5 +1,4 @@
-﻿using System.Text.RegularExpressions;
-using TicTacToe.Console;
+﻿using TicTacToe.Console;
 using TicTacToe.Console.Models;
 
 int selectedValue;

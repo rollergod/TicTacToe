@@ -1,6 +1,6 @@
 ﻿namespace TicTacToe.Console
 {
-    public static class MenuHelper
+    internal static class MenuHelper
     {
         public static int ShowMenu()
         {

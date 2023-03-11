@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TicTacToe.Console.Models
 {
-    public class CoordComparer : IEqualityComparer<Coord>
+    internal class CoordComparer : IEqualityComparer<Coord>
     {
         public bool Equals(Coord? x, Coord? y)
         {

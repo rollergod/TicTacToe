@@ -2,7 +2,7 @@
 
 namespace TicTacToe.Console.Models
 {
-    public class Board
+    internal class Board
     {
         private Board(List<Coord> xs, List<Coord> ys)
         {
