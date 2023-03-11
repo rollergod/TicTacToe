@@ -60,7 +60,6 @@ namespace TicTacToe.Api.Services
                         //System.Console.WriteLine("Место занято"); exception
                         //return this;
                     }
-                    //_xs.Add(coord);
                     _board.AddXCoord(coord);
                     return new Board(_board.XsCoords, _board.OsCoords);
                 case O:
@@ -70,7 +69,6 @@ namespace TicTacToe.Api.Services
                         //System.Console.WriteLine("Место занято"); exception
                         //return this;
                     }
-                    //_os.Add(coord);
                     _board.AddOCoord(coord);
                     return new Board(_board.XsCoords, _board.OsCoords);
 
@@ -122,6 +120,11 @@ namespace TicTacToe.Api.Services
             });
 
             return isGameHasVictoryLine;
+        }
+
+        public void NewGame()
+        {
+            _board = new Board();
         }
     }
 }

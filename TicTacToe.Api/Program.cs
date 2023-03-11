@@ -1,3 +1,4 @@
+using TicTacToe.Api.Helpers;
 using TicTacToe.Api.Interfaces;
 using TicTacToe.Api.Services;
 
@@ -17,6 +18,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.ConfigureExceptionMiddleware();
 
 app.UseHttpsRedirection();
 

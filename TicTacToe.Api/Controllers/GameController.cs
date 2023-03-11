@@ -44,5 +44,13 @@ namespace TicTacToe.Api.Controllers
 
             return RedirectToRoute("GetTable");
         }
+
+        [HttpPost("new-game")]
+        public IActionResult InitializeNewGame()
+        {
+            _gameService.NewGame();
+
+            return RedirectToRoute("GetTable");
+        }
     }
 }

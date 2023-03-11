@@ -10,5 +10,6 @@ namespace TicTacToe.Api.Interfaces
         public Board Put(int xCord, int yCord);
         public string PrintFreeCoordinates();
         public string Winner();
+        public void NewGame();
     }
 }
