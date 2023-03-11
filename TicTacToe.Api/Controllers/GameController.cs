@@ -22,11 +22,27 @@ namespace TicTacToe.Api.Controllers
             return Ok(table);
         }
 
+        [HttpGet("free-coordinates",Name = "GetFreeCoordinates")]
+        public IActionResult PrintFreeCoordinates()
+        {
+            var table = _gameService.PrintFreeCoordinates();
+
+            return Ok(table);
+        }
+
         [HttpPost]
         public IActionResult MakeStep(int xCord,int yCord)
         {
             var gameAfterStep = _gameService.Put(xCord,yCord);
-            return Ok();
+
+            string winner = _gameService.Winner();
+
+            if (!string.IsNullOrWhiteSpace(winner))
+            {
+                return Ok(winner);
+            }
+
+            return RedirectToRoute("GetTable");
         }
     }
 }

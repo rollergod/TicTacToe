@@ -8,9 +8,19 @@ namespace TicTacToe.Api.Services
     public class GameServices : IGameService
     {
         private Board _board = new();
-        public void PrintFreeCoordinates()
+        public string PrintFreeCoordinates()
         {
-            throw new NotImplementedException();
+            string table = "";
+            for (int i = 0; i < _board.GameBoard.GetLength(0); i++)
+            {
+                for (int j = 0; j < _board.GameBoard.GetLength(1); j++)
+                {
+                    if (_board.GameBoard[i, j].Symbol == '.')
+                        table += $"{_board.GameBoard[i, j].X} / {_board.GameBoard[i, j].Y} \n";
+                }
+            }
+
+            return table;
         }
 
         public string PrintTable()
@@ -48,7 +58,7 @@ namespace TicTacToe.Api.Services
                     if (PlaceIsNotNull(_board.OsCoords, coord))
                     {
                         //System.Console.WriteLine("Место занято"); exception
-                        return this;
+                        //return this;
                     }
                     //_xs.Add(coord);
                     _board.AddXCoord(coord);
@@ -58,7 +68,7 @@ namespace TicTacToe.Api.Services
                     if (PlaceIsNotNull(_board.XsCoords, coord)) // while loop
                     {
                         //System.Console.WriteLine("Место занято"); exception
-                        return this;
+                        //return this;
                     }
                     //_os.Add(coord);
                     _board.AddOCoord(coord);
@@ -87,19 +97,16 @@ namespace TicTacToe.Api.Services
             if (WinCoords(_board.XsCoords))
             {
                 winner = "X win";
-                System.Console.WriteLine("X win");
                 //_board.IsGameFinished = true;
             }
             else if (WinCoords(_board.OsCoords))
             {
                 winner = "O win";
-                System.Console.WriteLine("O win");
                 //IsGameFinished = true;
             }
             else if (_board.XsCoords.Union(_board.OsCoords).Count() == Constants.MAXIMUM_BLOCKS_ON_BOARD)
             {
                 winner = "Draw";
-                System.Console.WriteLine("Draw");
                 //IsGameFinished = true;
             }
 

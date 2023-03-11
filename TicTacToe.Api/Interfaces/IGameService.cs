@@ -8,7 +8,7 @@ namespace TicTacToe.Api.Interfaces
         public XorO Turn();
         public string PrintTable();
         public Board Put(int xCord, int yCord);
-        public void PrintFreeCoordinates();
-        public void Winner();
+        public string PrintFreeCoordinates();
+        public string Winner();
     }
 }
