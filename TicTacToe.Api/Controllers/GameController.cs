@@ -1,33 +1,32 @@
 using Microsoft.AspNetCore.Mvc;
+using TicTacToe.Api.Interfaces;
 
 namespace TicTacToe.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    [Route("api/[controller]")]
+    public class GameController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+        private readonly IGameService _gameService;
 
-        private readonly ILogger<WeatherForecastController> _logger;
-
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public GameController(IGameService gameService)
         {
-            _logger = logger;
+            _gameService = gameService;
         }
 
-        [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        [HttpGet(Name = "GetTable")]
+        public IActionResult PrintTable()
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+            var table = _gameService.PrintTable();
+
+            return Ok(table);
+        }
+
+        [HttpPost]
+        public IActionResult MakeStep(int xCord,int yCord)
+        {
+            var gameAfterStep = _gameService.Put(xCord,yCord);
+            return Ok();
         }
     }
 }

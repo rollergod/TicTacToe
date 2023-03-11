@@ -1,9 +1,14 @@
+using TicTacToe.Api.Interfaces;
+using TicTacToe.Api.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddSingleton<IGameService, GameServices>();
 
 var app = builder.Build();
 

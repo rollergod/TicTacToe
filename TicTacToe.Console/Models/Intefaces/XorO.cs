@@ -1,6 +1,6 @@
 ﻿namespace TicTacToe.Console.Models.Intefaces
 {
-    public interface XorO
+    internal interface XorO
     {
     }
 }

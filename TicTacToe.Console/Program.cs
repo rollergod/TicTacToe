@@ -47,6 +47,7 @@ do
 void MakeStep(Board board)
 {
     bool isInputCorrect = false;
+
     while (!isInputCorrect)
     {
         try
