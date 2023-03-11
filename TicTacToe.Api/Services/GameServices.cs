@@ -1,6 +1,7 @@
 ﻿using TicTacToe.Api.Helpers;
 using TicTacToe.Api.Interfaces;
 using TicTacToe.Api.Models;
+using TicTacToe.Api.Models.Errors.Exceptions;
 using TicTacToe.Api.Models.Intefaces;
 
 namespace TicTacToe.Api.Services
@@ -57,8 +58,7 @@ namespace TicTacToe.Api.Services
                     coord.Symbol = 'X';
                     if (PlaceIsNotNull(_board.OsCoords, coord))
                     {
-                        //System.Console.WriteLine("Место занято"); exception
-                        //return this;
+                        throw new PositionIsNotNullException(xCord, yCord);
                     }
                     _board.AddXCoord(coord);
                     return new Board(_board.XsCoords, _board.OsCoords);
@@ -66,8 +66,7 @@ namespace TicTacToe.Api.Services
                     coord.Symbol = 'O';
                     if (PlaceIsNotNull(_board.XsCoords, coord)) // while loop
                     {
-                        //System.Console.WriteLine("Место занято"); exception
-                        //return this;
+                        throw new PositionIsNotNullException(xCord, yCord);
                     }
                     _board.AddOCoord(coord);
                     return new Board(_board.XsCoords, _board.OsCoords);

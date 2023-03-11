@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using TicTacToe.Api.Models.Errors;
+using TicTacToe.Api.Models.Errors.Exceptions;
 
 namespace TicTacToe.Api.Helpers
 {
@@ -18,6 +19,7 @@ namespace TicTacToe.Api.Helpers
                     {
                         context.Response.StatusCode = contextFeature.Error switch
                         {
+                            PositionIsNotNullException => StatusCodes.Status400BadRequest,
                             _ => StatusCodes.Status500InternalServerError
                         };
                     }
@@ -25,8 +27,8 @@ namespace TicTacToe.Api.Helpers
                     await context.Response.WriteAsync(new ErrorDetails()
                     {
                         StatusCode = context.Response.StatusCode,
-                        MessageProcessingHandler = contextFeature.Error.Message
-                    }).ToString();
+                        Message = contextFeature.Error.Message
+                    }.ToString());
                 });
             });
         }
