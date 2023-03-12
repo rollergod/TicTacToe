@@ -39,4 +39,43 @@ REST api для игры крестики нолики.
 
 ## Пример ввода координат
 
-![image](https://user-images.githubusercontent.com/91565374/224567678-6e6df6b4-2278-4b29-ad48-c37cced060ae.png)
+**Request:**
+```json
+POST /login HTTP/1.1
+Accept: application/json
+Content-Type: application/json
+Content-Length: xy
+
+{
+    "xCord": "1",
+    "yCord": "1" 
+}
+```
+**Successful Response:**
+```json
+HTTP/1.1 200 OK
+Server: My RESTful API
+Content-Type: application/json
+Content-Length: xy
+
+{
+   "table": "...
+             .X.
+             ..."
+}
+
+```
+**Failed Response:**
+```json
+HTTP/1.1 401 Unauthorized
+Server: My RESTful API
+Content-Type: application/json
+Content-Length: xy
+
+{
+    "code": 400,
+    "message": "bad request",
+    "resolve": "Координата с позицией x и y занята"
+}
+``` 
+
