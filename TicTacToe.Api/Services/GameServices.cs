@@ -64,7 +64,7 @@ namespace TicTacToe.Api.Services
                     return new Board(_board.XsCoords, _board.OsCoords);
                 case O:
                     coord.Symbol = 'O';
-                    if (PlaceIsNotNull(_board.XsCoords, coord)) // while loop
+                    if (PlaceIsNotNull(_board.XsCoords, coord))
                     {
                         throw new PositionIsNotNullException(xCord, yCord);
                     }
@@ -94,17 +94,14 @@ namespace TicTacToe.Api.Services
             if (WinCoords(_board.XsCoords))
             {
                 winner = "X win";
-                //_board.IsGameFinished = true;
             }
             else if (WinCoords(_board.OsCoords))
             {
                 winner = "O win";
-                //IsGameFinished = true;
             }
             else if (_board.XsCoords.Union(_board.OsCoords).Count() == Constants.MAXIMUM_BLOCKS_ON_BOARD)
             {
                 winner = "Draw";
-                //IsGameFinished = true;
             }
 
             return winner;
