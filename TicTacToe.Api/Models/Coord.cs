@@ -2,14 +2,12 @@
 {
     public class Coord
     {
-        public Coord(int x, int y, char symbol = '.')
+        public Coord(int x, int y)
         {
             X = x;
             Y = y;
-            Symbol = symbol;
         }
         public int X { get; private set; }
         public int Y { get; private set; }
-        public char Symbol { get; set; }
     }
 }

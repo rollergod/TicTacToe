@@ -19,6 +19,7 @@ namespace TicTacToe.Api.Helpers
                     {
                         context.Response.StatusCode = contextFeature.Error switch
                         {
+                            IndexOutOfRangeException => StatusCodes.Status400BadRequest,
                             PositionIsNotNullException => StatusCodes.Status400BadRequest,
                             _ => StatusCodes.Status500InternalServerError
                         };

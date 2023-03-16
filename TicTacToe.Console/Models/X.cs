@@ -2,7 +2,8 @@
 
 namespace TicTacToe.Console.Models
 {
-    internal class X : XorO
+    public class X : XorO
     {
+       
     }
 }

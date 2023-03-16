@@ -9,53 +9,18 @@ namespace TicTacToe.Api.Services
     public class GameServices : IGameService
     {
         private Board _board = new();
-        public string PrintFreeCoordinates()
-        {
-            string table = "";
-            for (int i = 0; i < _board.GameBoard.GetLength(0); i++)
-            {
-                for (int j = 0; j < _board.GameBoard.GetLength(1); j++)
-                {
-                    if (_board.GameBoard[i, j].Symbol == '.')
-                        table += $"{_board.GameBoard[i, j].X} / {_board.GameBoard[i, j].Y} \n";
-                }
-            }
-
-            return table;
-        }
-
-        public string PrintTable()
-        {
-            string table = "";
-            for (int i = 0; i < _board.GameBoard.GetLength(0); i++)
-            {
-                for (int j = 0; j < _board.GameBoard.GetLength(1); j++)
-                {
-                    _board.GameBoard[i, j].Symbol = GetSymbol(i, j);
-                    table += _board.GameBoard[i, j].Symbol;
-                }
-                table += "\n";
-            }
-
-            return table;
-        }
-        private char GetSymbol(int i, int j)
-        {
-            var value = _board.XsCoords.Union(_board.OsCoords)
-                .FirstOrDefault(x => x.X == _board.GameBoard[i, j].X && x.Y == _board.GameBoard[i, j].Y);
-
-            return value != null ? value.Symbol : '.';
-        }
-
         public Board Put(int xCord, int yCord)
         {
+
+            if (xCord > 2 || yCord > 2)
+                throw new IndexOutOfRangeException($"Координаты ({xCord},{yCord}) выходят за пределы таблицы");
+
             var coord = new Coord(xCord, yCord);
             var turn = Turn();
 
             switch (turn)
             {
                 case X:
-                    coord.Symbol = 'X';
                     if (PlaceIsNotNull(_board.OsCoords, coord))
                     {
                         throw new PositionIsNotNullException(xCord, yCord);
@@ -63,7 +28,6 @@ namespace TicTacToe.Api.Services
                     _board.AddXCoord(coord);
                     return new Board(_board.XsCoords, _board.OsCoords);
                 case O:
-                    coord.Symbol = 'O';
                     if (PlaceIsNotNull(_board.XsCoords, coord))
                     {
                         throw new PositionIsNotNullException(xCord, yCord);

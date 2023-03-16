@@ -14,20 +14,12 @@ namespace TicTacToe.Api.Controllers
             _gameService = gameService;
         }
 
-        [HttpGet(Name = "GetTable")]
-        public IActionResult PrintTable()
+        [HttpGet("turn")]
+        public IActionResult Turn()
         {
-            var table = _gameService.PrintTable();
+            var turn = _gameService.Turn();
 
-            return Ok(table);
-        }
-
-        [HttpGet("free-coordinates",Name = "GetFreeCoordinates")]
-        public IActionResult PrintFreeCoordinates()
-        {
-            var table = _gameService.PrintFreeCoordinates();
-
-            return Ok(table);
+            return Ok(turn.ToString());
         }
 
         [HttpPost]
@@ -42,7 +34,7 @@ namespace TicTacToe.Api.Controllers
                 return Ok(winner);
             }
 
-            return RedirectToRoute("GetTable");
+            return Ok("Ход сделан");
         }
 
         [HttpPost("new-game")]
@@ -50,7 +42,7 @@ namespace TicTacToe.Api.Controllers
         {
             _gameService.NewGame();
 
-            return RedirectToRoute("GetTable");
+            return NoContent();
         }
     }
 }
