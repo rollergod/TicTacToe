@@ -28,20 +28,19 @@ Provide an overview of the directory structure and files, for example:
 
 REST api для игры крестики нолики.
 
-Апи имеет 4 endpoint`а
+Апи имеет 3 endpoint`а
 
-![image](https://user-images.githubusercontent.com/91565374/224567483-a6f7e28a-0768-4d61-a67b-c087b9f93baf.png)
+![image](https://user-images.githubusercontent.com/91565374/225708103-4d2c3e4d-b5e5-4728-878c-50486ad74e2b.png)
 
-* *get* **/api/game** - возвращает игровую таблицу.
+* *get* **/api/game/turn** - возвращает ход игрока - X или O.
 * *post* **/api/game** - принимает два параметра - координата по оси x и коордитана по оси y. Два раза одни и те же координаты указывать нельзя.
-* *get* **/api/game/free-coordinates** - возвращает строки с координатами пустых клеток
 * *post* **/api/game/new-game** - создает новую игру
 
 ## Пример ввода координат
 
 **Request:**
 ```json
-POST /login HTTP/1.1
+POST /game HTTP/1.1
 Accept: application/json
 Content-Type: application/json
 Content-Length: xy
@@ -54,28 +53,38 @@ Content-Length: xy
 **Successful Response:**
 ```json
 HTTP/1.1 200 OK
-Server: My RESTful API
+Server: TicTacToe
 Content-Type: application/json
 Content-Length: xy
 
 {
-   "table": "...
-             .X.
-             ..."
+   "Ход сделан"
 }
 
 ```
 **Failed Response:**
 ```json
-HTTP/1.1 401 Unauthorized
-Server: My RESTful API
+HTTP/1.1 404 BadRequest
+Server: TicTacToe
 Content-Type: application/json
 Content-Length: xy
 
 {
-    "code": 400,
+    "code": 404,
     "message": "bad request",
     "resolve": "Координата с позицией x и y занята"
 }
+
+HTTP/1.1 404 BadRequest
+Server: TicTacToe
+Content-Type: application/json
+Content-Length: xy
+
+{
+    "code": 404,
+    "message": "bad request",
+    "resolve": "Координаты выходят за пределы таблицы"
+}
+
 ``` 
 
